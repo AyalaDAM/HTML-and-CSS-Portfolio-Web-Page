@@ -1,0 +1,352 @@
+/*
+    It should work well in both Chrome and Firefox
+    from a minimum width of about 350px up to full
+    screen on a monitor up to 2k.
+*/
+
+:root {
+    --color-back: #181818;
+    --color-header: #39d352;
+    --color-links: rgb(103, 255, 103);
+    --color-contrast1: #333;
+    --color-contrast2: #444;
+    --color-contrast3: #555;
+    --color-contrast4: #666;
+    --color-contrast5: #222;
+    --color-text: azure;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../assets/fonts/Poppins-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'PoppinsBold';
+    src: url('../assets/fonts/Poppins-Bold.ttf')
+}
+
+body {
+    background-color: var(--color-back);
+    font-family: 'Poppins';
+    color: var(--color-text);
+}
+
+header {
+    background: var(--color-header);
+    padding: 1.5rem;
+    font-family: 'PoppinsBold';
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    column-gap: 50px;
+    row-gap: 25px;
+    padding: 20px;
+    margin: 20px 20px 0px 20px;
+    width: 100%;
+    max-width: 1900px;
+}
+
+.grid-header {
+    grid-column: span 2;
+    text-align: center;
+    font-family: 'PoppinsBold';
+    font-size: 3.5vw;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar, .content {
+    text-align: justify;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar {
+    background-color: var(--color-contrast5);
+    padding: 30px;
+    border-radius: 20px;
+    height: fit-content;
+    margin: 70px 0px 25px 0px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    margin-right: 60px;
+    gap: 20px;
+}
+
+.content-title {
+    font-size: 1.5em;
+}
+
+.content article {
+    padding: 20px 40px;
+    border-radius: 25px;
+    background-color: var(--color-contrast5);
+    margin-bottom: 20px;
+}
+
+.ejemplo {
+    font-size: 1vw;
+}
+
+article img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+article img:hover {
+    cursor: zoom-in;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.fullscreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.fullscreen img {
+    cursor: zoom-out !important;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+#fullscreen:target {
+    display: flex;
+    cursor: zoom-out;
+}
+
+.contrast {
+    background-color: var(--color-contrast1);
+    border-radius: 20px;
+    padding: 25px;
+    width: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.h3-links {
+    display: flex;
+    gap: 15px;
+}
+
+.h3-links a {
+    color: var(--color-links);
+    transform: translateY(3px);
+}
+
+article ul {
+    display: block;
+    list-style-type: disc;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 40px;
+}
+
+article li {
+    display: list-item;
+}
+
+.navbar {
+    background: var(--color-contrast1);
+    padding: 10px 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu li {
+    list-style: none;
+    position: relative;
+}
+
+.menu a, .menu p {
+    cursor: pointer;
+    text-decoration: none;
+    color: azure;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover, .menu p:hover {
+    background: var(--color-header);
+    border-radius: 4px;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: var(--color-contrast2);
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.nested-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    border-radius: 4px;
+    background: var(--color-contrast3);
+    width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.nested-dropdown:hover .nested-submenu {
+    display: block;
+}
+
+.submenu li, .nested-submenu li {
+    border-bottom: 1px solid var(--color-contrast4);
+}
+
+.submenu li:last-child, .nested-submenu li:last-child {
+    border-bottom: none;
+}
+
+.submenu a, .nested-submenu a {
+    padding: 12px 15px;
+    color: azure;
+}
+
+.submenu a:hover, .nested-submenu a:hover {
+    background: var(--color-header);
+}
+
+footer {
+    background: var(--color-contrast1);
+    color: azure;
+    text-align: center;
+    padding: 1rem;
+}
+
+@media (max-width: 1300px) {
+
+    .grid-container {
+        display: block;
+    }
+
+    .sidebar {
+        margin: 25px;
+    }
+
+    .content {
+        margin: 0px;
+    }
+}
+
+@media (max-width: 825px) {
+
+    .sidebar {
+        font-size: 0.8em;
+    }
+
+    .menu {
+        justify-content: left;
+    }
+
+    .submenu {
+        width: 180px;
+    }
+
+    .nested-submenu {
+        width: 180px;
+        max-height: 200px;
+    }
+}
+
+/* He considerado que es mejor cambiarlo a 475px porque
+se ve más adecuado. Igualmente se ve bien todo en 400px */
+@media (max-width: 475px) {
+    body {
+        font-size: 14px;
+    }
+
+    .grid-header {
+        font-size: 20px;
+        margin: 30px 10px 10px 10px;
+    }
+
+    .grid-container {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    article ul {
+        padding-left: 0px;
+    }
+
+    .h3-links {
+        display: block;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .menu a {
+        padding: 8px 12px;
+    }
+
+    .submenu, .nested-submenu {
+        width: 160px;
+    }
+
+    .nested-submenu {
+        max-height: 180px;
+    }
+}
