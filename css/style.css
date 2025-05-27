@@ -152,7 +152,12 @@ article img:hover {
     object-fit: contain;
 }
 
-#fullscreen:target {
+#fullscreen-landing:target {
+    display: flex;
+    cursor: zoom-out;
+}
+
+#fullscreen-rupee:target {
     display: flex;
     cursor: zoom-out;
 }
